@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { AuthContext } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 export default function Login() {  
+    const auth = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault(); // 1. Moved to the top
-        setError(''); // Clear any previous errors
+        e.preventDefault(); 
+        setError(''); 
 
         try {
             const res = await axios.post("http://localhost:3000/api/auth/login", {
@@ -20,7 +22,7 @@ export default function Login() {
 
             if (res.data.success) {
                 const token = res.data.token;
-                localStorage.setItem("token", token);
+                auth?.login(token);
                 navigate('/');
             } else {
                 setError("Invalid Credentials");
@@ -96,6 +98,14 @@ export default function Login() {
                         </button>
                     </div>
                 </form>
+                <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600">
+                    Don't have an account?{' '}
+                    <Link to="/signup" className="font-medium text-orange-600 hover:text-orange-500">
+                        Sign up here
+                    </Link>
+                </p>
+            </div>
             </div>
         </div>
     )

@@ -23,14 +23,6 @@ export default function Home(){
   }, []);
     return (
         <div className="min-h-screen bg-gray-100 font-sans text-gray-900">
-      {/* Navbar */}
-      <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-4 py-4">
-          <h1 className="text-2xl font-extrabold tracking-tight text-orange-600">
-            ThreadNode
-          </h1>
-        </div>
-      </nav>
 
       {/* Main Feed */}
       <main className="max-w-3xl mx-auto px-4 py-8">
