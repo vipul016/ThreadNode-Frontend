@@ -23,8 +23,8 @@ export default function Signup() {
                 password
             });
 
-            if (res.data.success || res.data.userId) {
-                auth?.login(res.data.userId);
+            if (res.data.success || res.data.token) {
+                auth?.login(res.data.token);
                 navigate('/');
             } else {
                 setError("Signup failed. Please check your details.");
